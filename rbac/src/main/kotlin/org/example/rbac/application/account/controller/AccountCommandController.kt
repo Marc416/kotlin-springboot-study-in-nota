@@ -4,8 +4,8 @@ import com.notaaiassignmentrdbac.application.account.dto.request.AccountSignInRe
 import com.notaaiassignmentrdbac.application.account.dto.request.AccountSignupRequest
 import com.notaaiassignmentrdbac.application.account.dto.request.EmailVerifyRequest
 import com.notaaiassignmentrdbac.application.account.dto.request.VerifyEmailRequest
-import com.notaaiassignmentrdbac.application.account.dto.response.AccountSignInSuccessResponse
-import com.notaaiassignmentrdbac.application.account.dto.response.AccountSignupSuccessResponse
+import org.example.rbac.application.account.dto.response.AccountSignInSuccessResponse
+import org.example.rbac.application.account.dto.response.AccountSignupSuccessResponse
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

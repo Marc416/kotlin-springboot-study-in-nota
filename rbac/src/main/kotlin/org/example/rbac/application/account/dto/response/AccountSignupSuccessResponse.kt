@@ -1,4 +1,4 @@
-package com.notaaiassignmentrdbac.application.account.dto.response
+package org.example.rbac.application.account.dto.response
 
 import java.time.LocalDateTime
 
