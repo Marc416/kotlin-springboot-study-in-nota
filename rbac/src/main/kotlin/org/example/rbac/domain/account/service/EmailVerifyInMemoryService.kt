@@ -1,17 +1,20 @@
 package org.example.rbac.domain.account.service
 
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 
-class EmailVerifyInMemoryService :EmailVerifyUseCase{
+class EmailVerifyInMemoryService : EmailVerifyUseCase {
+    private val verificationCodes: MutableMap<String, String> = ConcurrentHashMap()
+
     override fun sendVerifyCodeToEmail(email: String): String {
         val code = generateVerificationCode()
-        // TODO 생성한 코드를 어딘가에 저장해야 함
+        verificationCodes[email] = code
         // TODO 생성한 코드를 고객 이메일로 전송
         return code
     }
 
     override fun verifyEmailCode(email: String, code: String): Boolean {
-        TODO("Not yet implemented")
+        return verificationCodes.containsKey(email) && verificationCodes[email] == code
     }
 
     private fun generateVerificationCode(): String {
