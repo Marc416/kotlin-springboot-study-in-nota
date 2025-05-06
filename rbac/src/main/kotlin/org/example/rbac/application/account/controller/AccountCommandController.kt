@@ -1,9 +1,9 @@
 package org.example.rbac.application.account.controller
 
-import com.notaaiassignmentrdbac.application.account.dto.request.AccountSignInRequest
-import com.notaaiassignmentrdbac.application.account.dto.request.AccountSignupRequest
-import com.notaaiassignmentrdbac.application.account.dto.request.EmailVerifyRequest
-import com.notaaiassignmentrdbac.application.account.dto.request.VerifyEmailRequest
+import org.example.rbac.application.account.dto.request.AccountSignInRequest
+import org.example.rbac.application.account.dto.request.AccountSignupRequest
+import org.example.rbac.application.account.dto.request.EmailVerifyRequest
+import org.example.rbac.application.account.dto.request.VerifyEmailRequest
 import org.example.rbac.application.account.dto.response.AccountSignInSuccessResponse
 import org.example.rbac.application.account.dto.response.AccountSignupSuccessResponse
 import org.example.rbac.domain.account.service.EmailVerifyUseCase
@@ -23,7 +23,7 @@ class AccountCommandController(
         @RequestBody requestBody: AccountSignupRequest
     ): AccountSignupSuccessResponse {
         return AccountSignupSuccessResponse(
-            id=1L,
+            id = 1L,
             createdAt = LocalDateTime.now()
         )
     }

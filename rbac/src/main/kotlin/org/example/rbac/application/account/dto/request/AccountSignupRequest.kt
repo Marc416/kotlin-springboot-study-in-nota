@@ -1,4 +1,4 @@
-package com.notaaiassignmentrdbac.application.account.dto.request
+package org.example.rbac.application.account.dto.request
 
 data class AccountSignupRequest(
     val email: String,
