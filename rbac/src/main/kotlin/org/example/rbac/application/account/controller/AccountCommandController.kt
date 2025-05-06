@@ -6,6 +6,7 @@ import org.example.rbac.application.account.dto.request.EmailVerifyRequest
 import org.example.rbac.application.account.dto.request.VerifyEmailRequest
 import org.example.rbac.application.account.dto.response.AccountSignInSuccessResponse
 import org.example.rbac.application.account.dto.response.AccountSignupSuccessResponse
+import org.example.rbac.application.common.httpresponse.HttpApiResponse
 import org.example.rbac.domain.account.service.EmailVerifyUseCase
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -43,9 +44,9 @@ class AccountCommandController(
     @PostMapping("/verify/email")
     fun sendVerifyCodeToEmail(
         @RequestBody requestBody: EmailVerifyRequest
-    ) {
+    ): HttpApiResponse<Unit> {
         emailVerifyUseCase.sendVerifyCodeToEmail(requestBody.email)
-        return
+        return HttpApiResponse.ok()
     }
 
     /**
@@ -54,8 +55,9 @@ class AccountCommandController(
     @PostMapping("/verify/email/code")
     fun verifyEmailCode(
         @RequestBody requestBody: VerifyEmailRequest,
-    ) {
-        return
+    ): HttpApiResponse<Unit> {
+        emailVerifyUseCase.verifyEmailCode(requestBody.email, requestBody.code)
+        return HttpApiResponse.ok()
     }
 
 }
