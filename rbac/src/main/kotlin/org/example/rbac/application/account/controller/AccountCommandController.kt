@@ -6,6 +6,7 @@ import com.notaaiassignmentrdbac.application.account.dto.request.EmailVerifyRequ
 import com.notaaiassignmentrdbac.application.account.dto.request.VerifyEmailRequest
 import org.example.rbac.application.account.dto.response.AccountSignInSuccessResponse
 import org.example.rbac.application.account.dto.response.AccountSignupSuccessResponse
+import org.example.rbac.domain.account.service.EmailVerifyUseCase
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,7 +15,9 @@ import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/account")
-class AccountCommandController {
+class AccountCommandController(
+    private val emailVerifyUseCase: EmailVerifyUseCase,
+) {
     @PostMapping("/signup")
     fun signUp(
         @RequestBody requestBody: AccountSignupRequest
@@ -41,6 +44,7 @@ class AccountCommandController {
     fun sendVerifyCodeToEmail(
         @RequestBody requestBody: EmailVerifyRequest
     ) {
+        emailVerifyUseCase.sendVerifyCodeToEmail(requestBody.email)
         return
     }
 

@@ -1,8 +1,10 @@
 package org.example.rbac.domain.account.service
 
+import org.springframework.stereotype.Service
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
+@Service
 class EmailVerifyInMemoryService : EmailVerifyUseCase {
     private val verificationCodes: MutableMap<String, String> = ConcurrentHashMap()
 
