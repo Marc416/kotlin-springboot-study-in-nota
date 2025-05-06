@@ -1,17 +1,20 @@
 package org.example.rbac.domain.account.service
 
+import org.example.rbac.domain.account.port.out.EmailServicePort
 import org.springframework.stereotype.Service
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 @Service
-class EmailVerifyInMemoryService : EmailVerifyUseCase {
+class EmailVerifyInMemoryService(
+    private val emailServicePort: EmailServicePort,
+) : EmailVerifyUseCase {
     private val verificationCodes: MutableMap<String, String> = ConcurrentHashMap()
 
     override fun sendVerifyCodeToEmail(email: String): String {
         val code = generateVerificationCode()
         verificationCodes[email] = code
-        // TODO 생성한 코드를 고객 이메일로 전송
+        emailServicePort.send(email, code)
         return code
     }
 
