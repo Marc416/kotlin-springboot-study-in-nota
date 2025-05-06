@@ -1,4 +1,4 @@
-package org.example.rbac.application.account.entity
+package org.example.rbac.domain.account.entity
 
 import java.time.LocalDateTime
 

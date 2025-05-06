@@ -1,4 +1,4 @@
-package org.example.rbac.application.account.entity
+package org.example.rbac.domain.account.entity
 
 enum class AccountStatus(val description: String) {
     ACTIVE("활성"),

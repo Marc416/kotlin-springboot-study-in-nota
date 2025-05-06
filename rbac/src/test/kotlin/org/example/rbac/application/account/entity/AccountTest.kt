@@ -1,6 +1,8 @@
 package org.example.rbac.application.account.entity
 
 import org.assertj.core.api.Assertions.assertThat
+import org.example.rbac.domain.account.entity.Account
+import org.example.rbac.domain.account.entity.AccountRole
 import kotlin.test.Test
 
 class AccountTest {
