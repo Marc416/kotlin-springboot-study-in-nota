@@ -4,7 +4,9 @@ import org.example.rbac.application.account.dto.response.AccountSignupSuccessRes
 import org.example.rbac.domain.account.entity.Account
 import org.example.rbac.domain.account.entity.AccountRole
 import org.example.rbac.domain.account.repository.AccountRepository
+import org.springframework.stereotype.Service
 
+@Service
 class AccountCommandService(
     private val accountRepository: AccountRepository,
 ):AccountCommandUseCase {

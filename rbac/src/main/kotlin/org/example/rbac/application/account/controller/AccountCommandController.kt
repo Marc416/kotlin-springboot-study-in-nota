@@ -7,6 +7,7 @@ import org.example.rbac.application.account.dto.request.VerifyEmailRequest
 import org.example.rbac.application.account.dto.response.AccountSignInSuccessResponse
 import org.example.rbac.application.account.dto.response.AccountSignupSuccessResponse
 import org.example.rbac.application.common.httpresponse.HttpApiResponse
+import org.example.rbac.domain.account.service.AccountCommandUseCase
 import org.example.rbac.domain.account.service.EmailVerifyUseCase
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -18,15 +19,19 @@ import java.time.LocalDateTime
 @RequestMapping("/account")
 class AccountCommandController(
     private val emailVerifyUseCase: EmailVerifyUseCase,
+    private val accountCommandUseCase: AccountCommandUseCase
 ) {
     @PostMapping("/signup")
     fun signUp(
         @RequestBody requestBody: AccountSignupRequest
-    ): AccountSignupSuccessResponse {
-        return AccountSignupSuccessResponse(
-            id = 1L,
-            createdAt = LocalDateTime.now()
+    ): HttpApiResponse<AccountSignupSuccessResponse> {
+        val response = accountCommandUseCase.signUp(
+            email = requestBody.email,
+            password = requestBody.password,
+            tenantKey = requestBody.tenantKey,
+            role = requestBody.role
         )
+        return HttpApiResponse.of(response)
     }
 
     @PostMapping("/signin")
