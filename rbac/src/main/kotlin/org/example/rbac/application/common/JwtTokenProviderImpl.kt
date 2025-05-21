@@ -2,6 +2,7 @@ package org.example.rbac.application.common
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
+import com.auth0.jwt.exceptions.JWTDecodeException
 import com.auth0.jwt.interfaces.DecodedJWT
 import org.example.rbac.domain.account.dto.AccountJwtPayload
 import org.example.rbac.domain.common.JwtTokenProvider
@@ -42,8 +43,10 @@ class JwtTokenProviderImpl(
         return try {
             verifyToken(token)
             true
-        } catch (e: Exception) {
+        } catch (e: JWTDecodeException) {
             false
+        } catch (e: Exception) {
+            throw e
         }
     }
 
