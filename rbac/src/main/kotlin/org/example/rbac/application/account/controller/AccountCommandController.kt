@@ -37,10 +37,13 @@ class AccountCommandController(
     @PostMapping("/signin")
     fun signIn(
         @RequestBody requestBody: AccountSignInRequest
-    ): AccountSignInSuccessResponse {
-        return AccountSignInSuccessResponse(
-            token = "JWT token"
+    ): HttpApiResponse<AccountSignInSuccessResponse> {
+        val response = accountCommandUseCase.signIn(
+            email = requestBody.email,
+            tenantKey = requestBody.tenantKey,
+            password = requestBody.password
         )
+        return HttpApiResponse.of(response)
     }
 
     /**

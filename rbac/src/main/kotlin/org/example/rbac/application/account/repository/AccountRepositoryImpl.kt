@@ -30,6 +30,12 @@ class AccountRepositoryImpl: AccountRepository {
         return map[accountId]?.let { return it } ?: throw Exception("Account not found")
     }
 
+    override fun findByEmailAndTenantKey(email: String, tenantKey: String): Account {
+        return map.values.firstOrNull {
+            it.email == email && it.tenantKey == tenantKey
+        } ?: throw Exception("Account not found")
+    }
+
     private fun generateId(): Long {
         return map.keys.lastOrNull()?.plus(1) ?: 1L
     }
