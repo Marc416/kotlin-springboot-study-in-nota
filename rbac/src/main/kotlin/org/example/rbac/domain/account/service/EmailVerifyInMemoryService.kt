@@ -1,9 +1,12 @@
 package org.example.rbac.domain.account.service
 
+import mu.KotlinLogging
 import org.example.rbac.domain.account.port.out.EmailServicePort
 import org.springframework.stereotype.Service
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
+
+val logger = KotlinLogging.logger {}
 
 @Service
 class EmailVerifyInMemoryService(
@@ -15,6 +18,9 @@ class EmailVerifyInMemoryService(
         val code = generateVerificationCode()
         verificationCodes[email] = code
         emailServicePort.send(email, code)
+        logger.info {
+            "Verification code sent to $email: $code"
+        }
         return code
     }
 
