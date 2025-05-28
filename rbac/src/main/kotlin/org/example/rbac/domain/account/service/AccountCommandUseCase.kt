@@ -1,5 +1,6 @@
 package org.example.rbac.domain.account.service
 
+import org.example.rbac.application.account.dto.response.AccountSignInSuccessResponse
 import org.example.rbac.application.account.dto.response.AccountSignupSuccessResponse
 import org.example.rbac.domain.account.entity.AccountRole
 
@@ -10,5 +11,7 @@ interface AccountCommandUseCase {
         tenantKey: String,
         role: AccountRole,
     ): AccountSignupSuccessResponse
+
+    fun signIn(email: String, tenantKey: String, password: String,): AccountSignInSuccessResponse
 
 }
